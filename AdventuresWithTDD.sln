@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_MsTest", "Tests_MsTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_Nunit", "Tests_Nunit\Tests_Nunit.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFileImpl", "WindowsFileImpl\WindowsFileImpl.csproj", "{2999DD50-0AA8-4F43-80CD-C8E52A3F0786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsDirectoryImpl", "WindowsDirectoryImpl\WindowsDirectoryImpl.csproj", "{6D2D5F4A-C009-469A-A032-867B3A58721A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2999DD50-0AA8-4F43-80CD-C8E52A3F0786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2999DD50-0AA8-4F43-80CD-C8E52A3F0786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2999DD50-0AA8-4F43-80CD-C8E52A3F0786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2999DD50-0AA8-4F43-80CD-C8E52A3F0786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D2D5F4A-C009-469A-A032-867B3A58721A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D2D5F4A-C009-469A-A032-867B3A58721A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D2D5F4A-C009-469A-A032-867B3A58721A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D2D5F4A-C009-469A-A032-867B3A58721A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

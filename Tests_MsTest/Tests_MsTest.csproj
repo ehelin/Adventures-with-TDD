@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,7 +54,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTests.cs" />
+    <Compile Include="UnitTests_IWindowsFile.cs" />
+    <Compile Include="UnitTests_IWindowsDirectory.cs" />
+    <Compile Include="UnitTests_IFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,17 @@
       <Project>{35d721c5-50ee-4bf0-b528-46f41a02504a}</Project>
       <Name>Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WindowsDirectoryImpl\WindowsDirectoryImpl.csproj">
+      <Project>{6d2d5f4a-c009-469a-a032-867b3a58721a}</Project>
+      <Name>WindowsDirectoryImpl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsFileImpl\WindowsFileImpl.csproj">
+      <Project>{2999dd50-0aa8-4f43-80cd-c8e52a3f0786}</Project>
+      <Name>WindowsFileImpl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

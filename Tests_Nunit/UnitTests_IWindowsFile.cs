@@ -5,17 +5,17 @@ using Shared.interfaces;
 namespace Tests_Nunit
 {
     [TestFixture]
-    public class UnitTests
+    public class UnitTests_IWindowsFile
     {
-        private IFile fileImpl = null;
+        private IWindowsFile windowsFileImpl = null;
         private string directory = string.Empty;
         private string filePath = string.Empty;
         private string fileContents = string.Empty;
 
         [OneTimeSetUp]
-        public void Setup()
+        public void InitializeTest()
         {
-            fileImpl = new FileImpl.FileImpl();
+            windowsFileImpl = new WindowsFileImpl.WindowsFileImpl();
 
             directory = "c:\\temp\\test\\";
             filePath = directory + "testfile.txt";
@@ -23,36 +23,7 @@ namespace Tests_Nunit
         }
 
         [Test]
-        public void TestMethod_NUnit_CreateDirectory()
-        {
-            if (Directory.Exists(directory))
-            {
-                foreach (string file in Directory.GetFiles(directory))
-                {
-                    File.Delete(file);
-                }
-
-                Directory.Delete(directory);
-            }
-
-            fileImpl.CreateDirectory(directory);
-
-            Assert.IsTrue(Directory.Exists(directory));
-        }
-
-        [Test]
-        public void TestMethod_NUnit_DeleteDirectory()
-        {
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
-
-            fileImpl.DeleteDirectory(directory);
-
-            Assert.IsFalse(Directory.Exists(directory));
-        }
-
-        [Test]
-        public void TestMethod_NUnit_CreateFile()
+        public void Nunit_TestMethod_WindowsFile_CreateFile()
         {
             if (File.Exists(filePath))
                 File.Delete(filePath);
@@ -60,13 +31,12 @@ namespace Tests_Nunit
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 
-            fileImpl.CreateFile(filePath);
-
+            Assert.IsTrue(windowsFileImpl.CreateFile(filePath));
             Assert.IsTrue(File.Exists(filePath));
         }
 
         [Test]
-        public void TestMethod_NUnit_DeleteFile()
+        public void Nunit_TestMethod_WindowsFile_DeleteFile()
         {
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
@@ -74,23 +44,22 @@ namespace Tests_Nunit
             if (!File.Exists(filePath))
                 File.Create(filePath).Close();
 
-            fileImpl.DeleteFile(filePath);
-
+            Assert.IsTrue(windowsFileImpl.DeleteFile(filePath));
             Assert.IsFalse(File.Exists(filePath));
         }
 
         [Test]
-        public void TestMethod_NUnit_WriteReadToFromFile()
+        public void Nunit_TestMethod_WindowsFile_WriteReadToFromFile()
         {
             WriteReadFileInit();
 
-            fileImpl.WriteToFile(filePath, fileContents);
+            windowsFileImpl.WriteToFile(filePath, fileContents);
             Assert.IsTrue(File.Exists(filePath));
             Assert.IsTrue(new FileInfo(filePath).Length > 0);
 
-            string result = fileImpl.ReadFromFile(filePath);
+            string result = windowsFileImpl.ReadFromFile(filePath);
             Assert.IsFalse(string.IsNullOrEmpty(result));
-            Assert.AreEqual(result.Replace("\r\n", ""), this.fileContents);
+            Assert.AreEqual(result.Replace("\r\n",""), this.fileContents);
         }
 
         private void WriteReadFileInit()

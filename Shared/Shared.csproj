@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="interfaces\IWindowsDirectory.cs" />
+    <Compile Include="interfaces\IWindowsFile.cs" />
     <Compile Include="interfaces\IFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

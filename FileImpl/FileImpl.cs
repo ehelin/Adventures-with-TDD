@@ -6,87 +6,55 @@ namespace FileImpl
 {
     public class FileImpl : IFile
     {
-        public void CreateDirectory(string directory)
+        private IWindowsDirectory windowsDirectory = null;
+        private IWindowsFile windowsFile = null;
+
+        public FileImpl(IWindowsDirectory windowsDirectory, IWindowsFile windowsFile)
         {
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            this.windowsDirectory = windowsDirectory;
+            this.windowsFile = windowsFile;
         }
 
-        public void DeleteDirectory(string directory)
+        public bool CreateDirectory(string directory)
         {
-            if (Directory.Exists(directory))
-            {
-                foreach (string file in Directory.GetFiles(directory))
-                {
-                    File.Delete(file);
-                }
-
-                Directory.Delete(directory);
-            }
-        }
-
-        public void CreateFile(string path)
-        {
-            if (!File.Exists(path))
-                File.Create(path).Close();
-        }
-
-        public void DeleteFile(string path)
-        {
-            if (File.Exists(path))
-                File.Delete(path);
-        }
-
-        public string ReadFromFile(string path)
-        {
-            StreamReader sr = null;
-            string result = string.Empty;
-
-            try
-            {
-                sr = new StreamReader(path);
-                result = sr.ReadToEnd();        
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                if (sr != null)
-                {
-                    sr.Close();
-                    sr.Dispose();
-                    sr = null;
-                }
-            }
+            bool result = windowsDirectory.CreateDirectory(directory);
 
             return result;
         }
 
-        public void WriteToFile(string path, string msg)
+        public bool DeleteDirectory(string directory)
         {
-            StreamWriter sw = null;
+            bool result = windowsDirectory.DeleteDirectory(directory);
 
-            try
-            {
-                sw = new StreamWriter(path);
-                sw.WriteLine(msg);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                if (sw != null)
-                {
-                    sw.Flush();
-                    sw.Close();
-                    sw.Dispose();
-                    sw = null;
-                }
-            }
+            return result;
+        }
+
+        public bool CreateFile(string path)
+        {
+            bool result = windowsFile.CreateFile(path);
+
+            return result;
+        }
+
+        public bool DeleteFile(string path)
+        {
+            bool result = windowsFile.DeleteFile(path);
+
+            return result;
+        }
+
+        public string ReadFromFile(string path)
+        {
+            string result = windowsFile.ReadFromFile(path);
+
+            return result;
+        }
+
+        public bool WriteToFile(string path, string msg)
+        {
+            bool result = windowsFile.WriteToFile(path, msg);
+
+            return result;
         }
     }
 }
