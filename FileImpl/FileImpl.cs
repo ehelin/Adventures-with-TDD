@@ -1,5 +1,6 @@
 ﻿using System;
 using Shared.interfaces;
+using System.IO;
 
 namespace FileImpl
 {
@@ -7,32 +8,78 @@ namespace FileImpl
     {
         public void CreateDirectory(string directory)
         {
-            throw new NotImplementedException();
-        }
-
-        public void CreateFile(string path)
-        {
-            throw new NotImplementedException();
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
         }
 
         public void DeleteDirectory(string directory)
         {
-            throw new NotImplementedException();
+            if (Directory.Exists(directory))
+                Directory.Delete(directory);
+        }
+
+        public void CreateFile(string path)
+        {
+            if (!File.Exists(path))
+                File.Create(path).Close();
         }
 
         public void DeleteFile(string path)
         {
-            throw new NotImplementedException();
+            if (File.Exists(path))
+                File.Delete(path);
         }
 
         public string ReadFromFile(string path)
         {
-            throw new NotImplementedException();
+            StreamReader sr = null;
+            string result = string.Empty;
+
+            try
+            {
+                sr = new StreamReader(path);
+                result = sr.ReadToEnd();        
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (sr != null)
+                {
+                    sr.Close();
+                    sr.Dispose();
+                    sr = null;
+                }
+            }
+
+            return result;
         }
 
         public void WriteToFile(string path, string msg)
         {
-            throw new NotImplementedException();
+            StreamWriter sw = null;
+
+            try
+            {
+                sw = new StreamWriter(path);
+                sw.WriteLine(msg);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Flush();
+                    sw.Close();
+                    sw.Dispose();
+                    sw = null;
+                }
+            }
         }
     }
 }

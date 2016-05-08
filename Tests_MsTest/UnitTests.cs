@@ -26,7 +26,14 @@ namespace Tests_MsTest
         public void TestMethod_CreateDirectory()
         {
             if (Directory.Exists(directory))
+            {
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    File.Delete(file);
+                }
+
                 Directory.Delete(directory);
+            }
 
             fileImpl.CreateDirectory(directory);
 
@@ -50,6 +57,9 @@ namespace Tests_MsTest
             if (File.Exists(filePath))
                 File.Delete(filePath);
 
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
             fileImpl.CreateFile(filePath);
 
             Assert.IsTrue(File.Exists(filePath));
@@ -58,8 +68,11 @@ namespace Tests_MsTest
         [TestMethod]
         public void TestMethod_DeleteFile()
         {
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
             if (!File.Exists(filePath))
-                File.Create(filePath);
+                File.Create(filePath).Close();
 
             fileImpl.DeleteFile(filePath);
 
@@ -77,7 +90,7 @@ namespace Tests_MsTest
 
             string result = fileImpl.ReadFromFile(filePath);
             Assert.IsFalse(string.IsNullOrEmpty(result));
-            Assert.AreEqual(result, this.fileContents);
+            Assert.AreEqual(result.Replace("\r\n",""), this.fileContents);
         }
 
         private void WriteReadFileInit()
@@ -88,8 +101,8 @@ namespace Tests_MsTest
             if (File.Exists(filePath))
                 File.Delete(filePath);
 
-            Directory.CreateDirectory(directory);
-            File.Create(filePath);
+            //Directory.CreateDirectory(directory);
+            //File.Create(filePath);
         }
     }
 }
