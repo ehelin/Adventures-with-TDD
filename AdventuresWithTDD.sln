@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileImpl", "FileImpl\FileIm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_MsTest", "Tests_MsTest\Tests_MsTest.csproj", "{A93E53A8-556A-482B-A99E-F4C6F82145A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_Nunit", "Tests_Nunit\Tests_Nunit.csproj", "{067456C0-086C-46A8-B37F-1405717B7BFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A93E53A8-556A-482B-A99E-F4C6F82145A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A93E53A8-556A-482B-A99E-F4C6F82145A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A93E53A8-556A-482B-A99E-F4C6F82145A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067456C0-086C-46A8-B37F-1405717B7BFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

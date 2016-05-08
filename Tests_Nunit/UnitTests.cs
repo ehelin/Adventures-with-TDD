@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.IO;
+using NUnit.Framework;
 using Shared.interfaces;
-using System.IO;
 
-namespace Tests_MsTest
+namespace Tests_Nunit
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTests
     {
         private IFile fileImpl = null;
@@ -12,8 +12,8 @@ namespace Tests_MsTest
         private string filePath = string.Empty;
         private string fileContents = string.Empty;
 
-        [TestInitialize]
-        public void InitializeTest()
+        [OneTimeSetUp]
+        public void Setup()
         {
             fileImpl = new FileImpl.FileImpl();
 
@@ -22,8 +22,8 @@ namespace Tests_MsTest
             fileContents = "The lazy brown dog jumped over the moon";
         }
 
-        [TestMethod]
-        public void TestMethod_CreateDirectory()
+        [Test]
+        public void TestMethod_NUnit_CreateDirectory()
         {
             if (Directory.Exists(directory))
             {
@@ -40,8 +40,8 @@ namespace Tests_MsTest
             Assert.IsTrue(Directory.Exists(directory));
         }
 
-        [TestMethod]
-        public void TestMethod_DeleteDirectory()
+        [Test]
+        public void TestMethod_NUnit_DeleteDirectory()
         {
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
@@ -51,8 +51,8 @@ namespace Tests_MsTest
             Assert.IsFalse(Directory.Exists(directory));
         }
 
-        [TestMethod]
-        public void TestMethod_CreateFile()
+        [Test]
+        public void TestMethod_NUnit_CreateFile()
         {
             if (File.Exists(filePath))
                 File.Delete(filePath);
@@ -65,8 +65,8 @@ namespace Tests_MsTest
             Assert.IsTrue(File.Exists(filePath));
         }
 
-        [TestMethod]
-        public void TestMethod_DeleteFile()
+        [Test]
+        public void TestMethod_NUnit_DeleteFile()
         {
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
@@ -79,8 +79,8 @@ namespace Tests_MsTest
             Assert.IsFalse(File.Exists(filePath));
         }
 
-        [TestMethod]
-        public void TestMethod_WriteReadToFromFile()
+        [Test]
+        public void TestMethod_NUnit_WriteReadToFromFile()
         {
             WriteReadFileInit();
 
@@ -90,7 +90,7 @@ namespace Tests_MsTest
 
             string result = fileImpl.ReadFromFile(filePath);
             Assert.IsFalse(string.IsNullOrEmpty(result));
-            Assert.AreEqual(result.Replace("\r\n",""), this.fileContents);
+            Assert.AreEqual(result.Replace("\r\n", ""), this.fileContents);
         }
 
         private void WriteReadFileInit()

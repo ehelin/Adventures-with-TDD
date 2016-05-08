@@ -15,7 +15,14 @@ namespace FileImpl
         public void DeleteDirectory(string directory)
         {
             if (Directory.Exists(directory))
+            {
+                foreach (string file in Directory.GetFiles(directory))
+                {
+                    File.Delete(file);
+                }
+
                 Directory.Delete(directory);
+            }
         }
 
         public void CreateFile(string path)
