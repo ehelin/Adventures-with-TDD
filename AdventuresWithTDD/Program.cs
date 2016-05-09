@@ -1,29 +1,45 @@
 ﻿using Shared.interfaces;
+using Autofac;
 
 namespace AdventuresWithTDD
 {
     class Program
-    {
-        //TODO - Add autofac
+    {        
         static void Main(string[] args)
         {
-            IWindowsDirectory windowsDirectory = new WindowsDirectoryImpl.WindowsDirectoryImpl();
-            IWindowsFile windowsFile = new WindowsFileImpl.WindowsFileImpl();
-
-            IFile file = new FileImpl.FileImpl(windowsDirectory, windowsFile);
-
             string directory = "C:\\temp\\testing\\";
             string filePath = directory + "test.txt";
             string fileContents = "Testing a file insert";
 
-            file.CreateDirectory(directory);
-            file.CreateFile(filePath);
-            file.WriteToFile(filePath, fileContents);
+            IContainer container = BuildSystem();
 
-            string result = file.ReadFromFile(filePath);
+            using (var scope = container.BeginLifetimeScope())
+            {
+                IFile file = scope.Resolve<IFile>();
 
-            file.DeleteFile(filePath);
-            file.DeleteDirectory(directory);
+                file.CreateDirectory(directory);
+                file.CreateFile(filePath);
+                file.WriteToFile(filePath, fileContents);
+
+                string result = file.ReadFromFile(filePath);
+
+                file.DeleteFile(filePath);
+                file.DeleteDirectory(directory);
+            }
+        }
+
+        private static IContainer BuildSystem()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<WindowsDirectoryImpl.WindowsDirectoryImpl>().As<IWindowsDirectory>();
+            builder.RegisterType<WindowsFileImpl.WindowsFileImpl>().As<IWindowsFile>();
+
+            builder.Register(x => new FileImpl.FileImpl(x.Resolve<IWindowsDirectory>(), 
+                                                        x.Resolve<IWindowsFile>()))
+                                                        .As<IFile>();
+
+            return builder.Build();
         }
     }
 }
