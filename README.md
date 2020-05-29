@@ -1,5 +1,5 @@
-# Adventures with Test Driven Design (TDD)
-A C# .NET Framework application demonstrating TDD.
+# Adventures with Test Driven Development (TDD)
+A C# .NET Framework application demonstrating Test Driven Development (TDD).
 
 This project was created to demonstrate TDD using MSTest, XUnit and other technologies.
 
