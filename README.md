@@ -15,6 +15,6 @@ These items are also related to this project.
 
 ## How To Use
 
-Download the zip file and then follow instructions described <a href="https://erichelin.wordpress.com/2016/05/09/adventures-with-test-driven-development-tdd/">here</a>
+Download the zip file and then follow instructions described <a href="https://erichelin.wordpress.com/2016/05/09/adventures-with-test-driven-development-tdd/">here</a>.
 
 
